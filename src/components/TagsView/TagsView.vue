@@ -76,7 +76,6 @@ export default {
             }           
         },
         closeTags(tag){
-            console.log(tag)
         }
     }
 }
