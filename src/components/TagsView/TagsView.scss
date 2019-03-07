@@ -1,0 +1,40 @@
+.tags-view-main {
+    text-align: left
+}
+
+.tags-view-main .tags-view-item {
+    text-decoration: none;
+    border: 1px solid darkgray;
+    margin-right: 5px;
+    padding: 3px;
+    border-radius: 3px;
+    background: transparent;
+    color: black;
+    cursor: pointer;
+}
+
+.tags-view-main .active::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.tags-view-main .active {
+    background-color: #42b983;
+    color: #fff;
+    border-color: #42b983;
+}
+
+.el-icon-close {
+    width: 15px;
+    height: 16px;
+    border-radius: 50%;
+}
+
+.el-icon-close:hover {
+    background-color: #b4bccc;
+}
