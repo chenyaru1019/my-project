@@ -10,7 +10,7 @@
                 tag="span"
                 class="tags-view-item"
             >{{tag.name}}
-            <span v-if="tag.name !== 'dashboard'" class="el-icon-close" @click="closeTags(tag)"/>
+            <span v-if="tag.name !== 'dashboard'" class="el-icon-close" @click.prevent.stop="closeTags(tag)"/>
             </router-link>
         <!-- </scroll-pane> -->
     </div>
@@ -76,6 +76,18 @@ export default {
             }           
         },
         closeTags(tag){
+            console.log(tag)
+            this.$store.dispatch('delTagsView', tag).then((view) => {
+                if(this.isActive(tag)){
+                    let lastView = view.slice(-1)[0]
+                        if (lastView) {
+                            this.$router.push(lastView)
+                        } else {
+                            // You can set another route
+                            this.$router.push('/')
+                        }
+                }
+            })
         }
     }
 }

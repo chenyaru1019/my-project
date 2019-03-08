@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { getUser } from '../lib/util'
 import { constantRouterMap } from '@/router'
+import { resolve } from 'path';
 Vue.use(Vuex)
 
 
@@ -30,6 +31,14 @@ const store = new Vuex.Store({
                 path: router.path,
                 title: router.meta.title || 'no-title'
             })
+        },
+        delTags(state, router) {
+            for (let [i, v] of state.routers.entries()) {
+                if (v.path == router.path) {
+                    state.routers.splice(i, 1)
+                    break
+                }
+            }
         }
 
     },
@@ -40,6 +49,14 @@ const store = new Vuex.Store({
         addTag({ commit }, view) {
             console.log(view)
             commit('routers', view)
+        },
+        delTagsView({ commit, state }, view) {
+            //commit('delTags', view)
+            return new Promise((resolve) => {
+                commit('delTags', view)
+                resolve([...state.routers])
+            })
+
         }
     }
 })
